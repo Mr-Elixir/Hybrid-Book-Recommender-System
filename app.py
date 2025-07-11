@@ -6,14 +6,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 
 # Load preprocessed data and models
-popular_df = pickle.load(open('popular.pkl','rb'))
-pt = pickle.load(open('pt.pkl','rb'))
-books = pickle.load(open('books.pkl','rb'))
-similarity_scores = pickle.load(open('similarity_scores.pkl','rb'))
+popular_df = pickle.load(open('artifacts/popular.pkl','rb'))
+pt = pickle.load(open('artifacts/pt.pkl','rb'))
+books = pickle.load(open('artifacts/books.pkl','rb'))
+similarity_scores = pickle.load(open('artifacts/similarity_scores.pkl','rb'))
 
-tfidf = pickle.load(open('tfidf_vectorizer.pkl','rb'))
-kmeans = pickle.load(open('kmeans_model.pkl','rb'))
-books_with_clusters = pickle.load(open('books_with_clusters.pkl','rb'))
+tfidf = pickle.load(open('artifacts/tfidf_vectorizer.pkl','rb'))
+kmeans = pickle.load(open('artifacts/kmeans_model.pkl','rb'))
+books_with_clusters = pickle.load(open('artifacts/books_with_clusters.pkl','rb'))
 
 def recommend_books_kmeans(book_title, n_recommendations=5):
     idxs = books_with_clusters[books_with_clusters['Book-Title'].str.lower() == book_title.lower()].index
